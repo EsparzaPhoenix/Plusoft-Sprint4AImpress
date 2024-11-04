@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Table(name="JV_AIMPRESS_USER")
 @Getter @Setter @NoArgsConstructor
 @SequenceGenerator(name="seq_user", sequenceName="seq_JV_user", allocationSize=1, initialValue = 1)
-public class User implements UserDetails {
+public class UserAccount implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -36,13 +36,13 @@ public class User implements UserDetails {
     // Relação com a tabela Perfil
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_perfil",
+            name = "JV_AIMPRESS_USUARIO_PERFIL",
             joinColumns = @JoinColumn(name = "cd_user"),
             inverseJoinColumns = @JoinColumn(name = "cd_role")
     )
     private Set<Perfil> perfis;
 
-    public User(String username, String password, String email, Set<Perfil> perfis) {
+    public UserAccount(String username, String password, String email, Set<Perfil> perfis) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -68,12 +68,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;  // Você pode customizar essa lógica conforme necessário
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;  // Você pode customizar essa lógica conforme necessário
+        return true;
     }
 
     @Override
