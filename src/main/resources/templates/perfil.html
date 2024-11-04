@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil do Usuário</title>
+</head>
+<body>
+<h1>Perfil do Usuário</h1>
+<form th:action="@{/usuario/salvar}" th:object="${usuario}" method="post">
+  <label>Nome:</label>
+  <input type="text" th:field="*{name}" required />
+  <label>CPF:</label>
+  <input type="text" th:field="*{cpf}" required />
+  <label>Telefone:</label>
+  <input type="text" th:field="*{telefone}" required />
+  <label>Email:</label>
+  <input type="email" th:field="*{email}" required />
+  <button type="submit">Salvar</button>
+</form>
+</body>
+</html>

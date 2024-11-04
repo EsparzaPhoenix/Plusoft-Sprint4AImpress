@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Usuário</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Detalhes do Usuário</h1>
+  <p><strong>ID:</strong> <span th:text="${usuario.id}">ID</span></p>
+  <p><strong>Nome:</strong> <span th:text="${usuario.name}">Nome</span></p>
+  <p><strong>Email:</strong> <span th:text="${usuario.email}">Email</span></p>
+  <p><strong>CPF:</strong> <span th:text="${usuario.cpf}">CPF</span></p>
+  <p><strong>Telefone:</strong> <span th:text="${usuario.telefone}">Telefone</span></p>
+  <p><strong>Data de Nascimento:</strong> <span th:text="${usuario.dataNascimento}">Data de Nascimento</span></p>
+  <a th:href="@{/usuarios}" class="btn btn-secondary">Voltar</a>
+  <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-warning">Editar</a>
+  <a th:href="@{/usuarios/deletar/{id}(id=${usuario.id})}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este usuário?')">Deletar</a>
+</div>
+</body>
+</html>
