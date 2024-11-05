@@ -23,7 +23,7 @@ Este chatbot de criação de currículos profissionais é uma ferramenta inovado
 
 # Vídeo apresentando a Proposta 
 
-  [Vídeo Pitch]()
+  [Vídeo Pitch](https://youtu.be/uJ-xGQpz5l8)
 
 # Instrução de como rodar a aplicação
 *    Clique no botão CODE destacado em verde e faça o download do arquivo ZIP da aplicação.
