@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Currículos</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Lista de Currículos</h1>
+
+  <!-- Exibir mensagem de erro, se houver -->
+  <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+    <p th:text="${errorMessage}"></p>
+  </div>
+
+  <!-- Botão para criar um novo currículo -->
+  <div>
+    <a th:href="@{/curriculos/novo}" class="btn btn-primary">Criar Novo Currículo</a>
+  </div>
+  <br>
+
+  <!-- Tabela de currículos -->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Resumo</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="curriculo : ${curriculos}">
+      <td th:text="${curriculo.id}">1</td>
+      <td th:text="${curriculo.nome}">Nome do Candidato</td>
+      <td th:text="${curriculo.numeroTelefone}">Telefone</td>
+      <td th:text="${curriculo.resumo}">Resumo do Currículo</td>
+      <td>
+        <a th:href="@{/curriculos/{id}(id=${curriculo.id})}" class="btn btn-info btn-sm">Ver</a>
+        <a th:href="@{/curriculos/editar/{id}(id=${curriculo.id})}" class="btn btn-warning btn-sm">Editar</a>
+        <a th:href="@{/curriculos/deletar/{id}(id=${curriculo.id})}" class="btn btn-danger btn-sm"
+           onclick="return confirm('Tem certeza que deseja deletar este currículo?');">Deletar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

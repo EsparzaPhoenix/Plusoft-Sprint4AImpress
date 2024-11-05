@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Vagas</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Lista de Vagas</h1>
+
+  <div>
+    <a th:href="@{/vagas/novo}" class="btn btn-primary">Criar Nova Vaga</a>
+  </div>
+  <br>
+
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Empresa</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vaga : ${vagas}">
+      <td th:text="${vaga.id}">1</td>
+      <td th:text="${vaga.titulo}">Título da Vaga</td>
+      <td th:text="${vaga.descricao}">Descrição da Vaga</td>
+      <td th:text="${vaga.empresa}">Nome da Empresa</td>
+      <td>
+        <a th:href="@{/vagas/{id}(id=${vaga.id})}" class="btn btn-info btn-sm">Ver</a>
+        <a th:href="@{/vagas/editar/{id}(id=${vaga.id})}" class="btn btn-warning btn-sm">Editar</a>
+        <a th:href="@{/vagas/deletar/{id=${vaga.id})}" class="btn btn-danger btn-sm"
+           onclick="return confirm('Tem certeza que deseja deletar esta vaga?');">Deletar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Currículo</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Criar Novo Currículo</h1>
+  <form th:action="@{/curriculos}" th:object="${curriculo}" method="post">
+
+    <!-- Nome -->
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" th:field="*{nome}" class="form-control" required/>
+    </div>
+
+    <!-- Telefone -->
+    <div class="form-group">
+      <label>Número de Telefone</label>
+      <input type="text" th:field="*{numeroTelefone}" class="form-control" required/>
+    </div>
+
+    <!-- Resumo -->
+    <div class="form-group">
+      <label>Resumo</label>
+      <textarea th:field="*{resumo}" class="form-control" required></textarea>
+    </div>
+
+    <!-- Experiência -->
+    <div class="form-group">
+      <label>Experiência</label>
+      <textarea th:field="*{experiencia}" class="form-control" required></textarea>
+    </div>
+
+    <!-- Nível de Escolaridade -->
+    <div class="form-group">
+      <label>Nível de Escolaridade</label>
+      <select th:field="*{nivelEscolaridade}" class="form-control" required>
+        <option value="" disabled>Selecione</option>
+        <option th:each="nivel : ${T(br.com.fiap.aimpress.model.enums.NivelEscolaridade).values()}"
+                th:value="${nivel}" th:text="${nivel}"></option>
+      </select>
+    </div>
+
+    <!-- Carreira -->
+    <div class="form-group">
+      <label>Carreira</label>
+      <select th:field="*{carreira}" class="form-control" required>
+        <option value="" disabled>Selecione</option>
+        <option th:each="carreira : ${T(br.com.fiap.aimpress.model.enums.Carreira).values()}"
+                th:value="${carreira}" th:text="${carreira}"></option>
+      </select>
+    </div>
+
+    <!-- Cursos -->
+    <div class="form-group">
+      <label>Cursos</label>
+      <textarea th:field="*{cursos}" class="form-control" required></textarea>
+    </div>
+
+    <!-- Idiomas -->
+    <div class="form-group">
+      <label>Idiomas</label>
+      <textarea th:field="*{idiomas}" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar Currículo</button>
+  </form>
+</div>
+</body>
+</html>

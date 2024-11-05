@@ -21,20 +21,27 @@ public class CurriculoController {
     public String listCurriculos(Model model) {
         List<CurriculoDto> curriculos = curriculoService.getAllCurriculos();
         model.addAttribute("curriculos", curriculos);
-        return "curriculos/list";
+        return "curriculos/curriculo_list";
     }
 
     @GetMapping("/{id}")
     public String viewCurriculo(@PathVariable Long id, Model model) {
-        CurriculoDto curriculo = curriculoService.getCurriculoById(id);
-        model.addAttribute("curriculo", curriculo);
-        return "curriculos/view";
+        try {
+            CurriculoDto curriculo = curriculoService.getCurriculoById(id);
+            model.addAttribute("curriculo", curriculo);
+            return "curriculos/view"; // Certifique-se de que este HTML existe e está corretamente configurado
+        } catch (RuntimeException e) {
+            // Mensagem de erro caso o currículo não seja encontrado
+            model.addAttribute("errorMessage", "Currículo não encontrado.");
+            return "curriculos/curriculo_list"; // Retorna para a lista de currículos com a mensagem de erro
+        }
     }
+
 
     @GetMapping("/novo")
     public String showCreateForm(Model model) {
         model.addAttribute("curriculo", new CurriculoDto());
-        return "curriculos/form";
+        return "curriculos/curriculo_form";
     }
 
     @PostMapping

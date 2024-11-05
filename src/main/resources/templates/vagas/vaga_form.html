@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Vaga</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1 th:text="${vaga.id != null} ? 'Editar Vaga' : 'Criar Nova Vaga'">Criar Nova Vaga</h1>
+
+  <form th:action="@{/vagas}" th:object="${vaga}" method="post">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" th:field="*{titulo}" class="form-control" placeholder="Título da Vaga" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" th:field="*{descricao}" class="form-control" placeholder="Descrição da Vaga" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="empresa">Empresa</label>
+      <input type="text" id="empresa" th:field="*{empresa}" class="form-control" placeholder="Nome da Empresa" required/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar Vaga</button>
+    <a th:href="@{/vagas}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+</body>
+</html>

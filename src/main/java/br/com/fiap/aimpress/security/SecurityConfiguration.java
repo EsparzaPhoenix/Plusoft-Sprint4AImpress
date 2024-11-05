@@ -16,12 +16,12 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Desabilita CSRF para simplificação; remova em produção
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/users/register", "/webjars/**").permitAll() // Permite acesso sem autenticação à home e registro
-                        .anyRequest().authenticated() // Exige autenticação para todas as outras rotas
+                        .requestMatchers("/", "/users/register", "/webjars/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Define a página de login personalizada
-                        .defaultSuccessUrl("/", true) // Redireciona para a página inicial após login bem-sucedido
+                        .defaultSuccessUrl("/menu_principal", true) // Redireciona para o menu principal após login bem-sucedido
                         .permitAll()
                 )
                 .logout(logout -> logout

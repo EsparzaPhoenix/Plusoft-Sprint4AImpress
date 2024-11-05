@@ -22,9 +22,11 @@ public class CurriculoService {
     }
 
     public CurriculoDto getCurriculoById(Long id) {
-        Curriculo curriculo = curriculoRepository.findById(id).orElseThrow(() -> new RuntimeException("Currículo não encontrado"));
-        return toDto(curriculo);
+        return curriculoRepository.findById(id)
+                .map(this::toDto)
+                .orElseThrow(() -> new RuntimeException("Currículo não encontrado"));
     }
+
 
     public CurriculoDto createCurriculo(CurriculoDto curriculoDto) {
         Curriculo curriculo = toEntity(curriculoDto);
@@ -42,9 +44,10 @@ public class CurriculoService {
     }
 
     private CurriculoDto toDto(Curriculo curriculo) {
+        Long usuarioId = (curriculo.getUsuario() != null) ? curriculo.getUsuario().getId() : null;
         return new CurriculoDto(curriculo.getId(), curriculo.getNome(), curriculo.getNumeroTelefone(),
                 curriculo.getResumo(), curriculo.getExperiencia(), curriculo.getNivelEscolaridade(),
-                curriculo.getCarreira(), curriculo.getCursos(), curriculo.getIdiomas(), curriculo.getUsuario().getId());
+                curriculo.getCarreira(), curriculo.getCursos(), curriculo.getIdiomas(), usuarioId);
     }
 
     private Curriculo toEntity(CurriculoDto dto) {
